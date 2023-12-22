@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sıcaklık Dönüştürücü</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            color: red
+        }
+    </style>
+</head>
+<body>
+    <h1>Sıcaklık Çevirici</h1>
+
+    <label for="temperature">Sıcaklık Girin:</label>
+    <input type="number" id="temperature" placeholder="Değer Giriniz" required>
+    
+    <br>
+    
+    <label for="unit">Birim Seçin:</label>
+    <select id="unit">
+        <option value="kelvin">Kelvin</option>
+        <option value="fahrenheit">Fahrenheit</option>
+    </select>
+
+    <br><br>
+
+    <button onclick="convertTemperature()">Çevir</button>
+
+    <br><br>
+   
+
+    <div id="result"></div>
+
+    <script>
+        function kelvinToFahrenheit(kelvin) {
+            return (kelvin - 273.15) * 9/5 + 32;
+        }
+
+        function fahrenheitToKelvin(fahrenheit) {
+            return (fahrenheit - 32) * 5/9 + 273.15;
+        }
+
+        function convertTemperature() {
+            var temperatureInput = document.getElementById("temperature").value;
+            var unitSelect = document.getElementById("unit");
+            var selectedUnit = unitSelect.options[unitSelect.selectedIndex].value;
+
+            var resultElement = document.getElementById("result");
+
+            if (selectedUnit === "kelvin") {
+                var kelvin = parseFloat(temperatureInput);
+                var fahrenheit = kelvinToFahrenheit(kelvin);
+                resultElement.innerHTML = kelvin + " Kelvin, " + fahrenheit.toFixed(2) + " Fahrenheit'a eşittir.";
+            } else if (selectedUnit === "fahrenheit") {
+                var fahrenheit = parseFloat(temperatureInput);
+                var kelvin = fahrenheitToKelvin(fahrenheit);
+                resultElement.innerHTML = fahrenheit + " Fahrenheit, " + kelvin.toFixed(2) + " Kelvin'e eşittir.";
+            } else {
+                resultElement.innerHTML = "Geçersiz birim seçimi.";
+            }
+        }
+    </script>
+</body>
+</html>
+ <h6> Emir Talha Karadeniz 2023<h6/>
